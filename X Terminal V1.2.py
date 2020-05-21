@@ -7,6 +7,7 @@ import time
 import os.path
 import getpass
 import yagmail
+
 getpass. getuser()
 print("setting up X terminal")
 time.sleep(2)
@@ -44,21 +45,23 @@ if chk==True:
     if tool_slct == "1":
         search_type = input ("select search type: [name/extention] : ")
         if search_type==("name"):
-            dir_search=input("the directory you want to search ")
-            file_name=input("file name")
-            for f_name in os.listdir("C:/"+dir_search):
-                if f_name.startswith(file_name):
-                    print(f_name)
-                else:
-                    print("no files found")
-
-
-        elif search_type==("extention"):
-            dir_search=input("the directory you want to search ")
-            file_extention=input("file extention")
-            for f_name in os.listdir("C:/"+dir_search):
-                if f_name.endswith(file_extention):
-                    print(f_name)
+            name=input("file name ")
+            dir_path = os.path.dirname(os.path.realpath(__file__))
+            for root, dirs, files in os.walk(dir_path):
+                for file in files:
+                    if file.startswith(name):
+                        print ("root"+'/'+str(file))
+                    else:
+                        print("no files found")
+                    
+                
+    elif search_type==("extention"):
+        extention=(".") + input("file type ")
+        dir_path = os.path.dirname(os.path.realpath(__file__))
+        for root, dirs, files in os.walk(dir_path):
+            for file in files:
+                if file.endswith(extention):
+                    print ("root"+'/'+str(file))
                 else:
                     print("no files found")
             
